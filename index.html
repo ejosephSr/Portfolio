@@ -1,459 +1,401 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Emile F. Joseph Portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Emile F. Joseph: cybersecurity, data governance, and cloud security. M.S. Aviation Cybersecurity, CompTIA Security+ and CySA+.">
+<meta property="og:title" content="Emile F. Joseph">
+<meta property="og:description" content="Cybersecurity, data governance, and cloud security.">
+<meta property="og:image" content="Images/v2/headshot.jpg">
+<title>Emile F. Joseph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a single 1080px column; hero pairs the pitch with an airport departures board that charts the career path. */
+:root{
+  --bg:#F2F4F6; --surface:#FFFFFF; --ink:#0F1B2A; --muted:#4F5D6E; --line:#D7DDE4;
+  --accent:#8A5E00; --accent-soft:#F6E9C8;
+  --board:#10161D; --board-line:#1F2934; --flap:#E8A817; --flap-dim:#7C8794; --go:#3FBF7F;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --wrap:1080px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0A0F15; --surface:#111923; --ink:#E7ECF1; --muted:#9AA7B5; --line:#223040;
+  --accent:#F0B429; --accent-soft:#2A2210; --board:#05080C; --board-line:#1A232D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A0F15; --surface:#111923; --ink:#E7ECF1; --muted:#9AA7B5; --line:#223040;
+  --accent:#F0B429; --accent-soft:#2A2210; --board:#05080C; --board-line:#1A232D; color-scheme:dark}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.05;text-wrap:balance;margin:0}
+p{margin:0}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
 
-    <link rel="stylesheet" type="text/css" href="superslides.css">
-    <link rel="stylesheet" type="text/css" href="owl.carousel.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.mark{font:700 20px/1 var(--display);letter-spacing:.06em;text-decoration:none}
+.mark span{color:var(--accent)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:500}
+.nav ul a{text-decoration:none;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+@media (max-width:720px){.nav ul li.opt{display:none}.nav ul{gap:16px}}
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+/* hero */
+.hero{padding-block:64px 56px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(48px,7vw,84px);letter-spacing:.01em;text-transform:uppercase}
+.hero .roles{margin-top:14px;font:600 clamp(18px,2.2vw,22px)/1.3 var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.hero .roles b{color:var(--accent);font-weight:600}
+.hero p.lede{margin-top:20px;max-width:34em;font-size:17px;color:var(--muted)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:4px;font:600 14px/1 var(--body);text-decoration:none;border:1px solid var(--line);background:var(--surface)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn:hover{border-color:var(--accent)}
 
+/* departures board */
+.board{background:var(--board);border-radius:8px;padding:18px 18px 14px;color:var(--flap);font-family:var(--mono);box-shadow:0 1px 0 var(--board-line) inset,0 18px 40px -24px rgba(0,0,0,.6);min-width:0}
+.board-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--board-line)}
+.board-head strong{font:700 18px/1 var(--display);letter-spacing:.16em;color:#F3F5F7}
+.board-head span{font-size:11px;letter-spacing:.12em;color:var(--flap-dim)}
+.board table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+.board th{font-weight:400;font-size:10.5px;letter-spacing:.14em;color:var(--flap-dim);text-align:left;padding:10px 6px 6px}
+.board td{padding:9px 6px;border-top:1px solid var(--board-line);vertical-align:top;letter-spacing:.04em;text-transform:uppercase}
+.board td.dest{color:#F3F5F7}
+.board td.gate{color:var(--flap)}
+.st{font-weight:600;white-space:nowrap}
+.st.dep{color:var(--flap-dim)}
+.st.on{color:var(--go)}
+.st.brd{color:var(--flap);animation:blink 1.6s steps(2,start) infinite}
+@keyframes blink{50%{opacity:.35}}
+.board-foot{margin-top:10px;font-size:10.5px;letter-spacing:.1em;color:var(--flap-dim)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:36px}}
+@media (max-width:520px){.board .gate,.board th.gate{display:none}.board td,.board th{padding-inline:4px}}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+/* sections */
+section{padding-block:64px;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.sec-head h2{font-size:clamp(32px,4vw,44px);text-transform:uppercase;letter-spacing:.02em}
+.sec-head p{color:var(--muted);max-width:40em}
+
+/* about */
+.about{display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:start}
+.about img{width:220px;height:220px;object-fit:cover;border-radius:6px;display:block}
+.about .txt{display:flex;flex-direction:column;gap:16px;max-width:40em;min-width:0}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:8px}
+.facts div{background:var(--surface);padding:14px 16px}
+.facts dt{font:600 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:8px 0 0;font-weight:600;font-size:15px;line-height:1.35}
+@media (max-width:720px){.about{grid-template-columns:1fr}.about img{width:160px;height:160px}.facts{grid-template-columns:1fr}}
+
+/* experience timeline */
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.leg{display:grid;grid-template-columns:150px 1fr;gap:28px;padding-block:26px;border-top:1px solid var(--line)}
+.leg:first-child{border-top:0;padding-top:0}
+.when{font:400 13px/1.5 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.when .tag{display:inline-block;margin-top:8px;padding:3px 8px;border-radius:3px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);font-weight:600}
+.leg h3{font-size:26px;letter-spacing:.01em}
+.leg .org{margin-top:4px;color:var(--muted);font-weight:500}
+.leg ul{margin:14px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:8px;max-width:44em}
+.leg li::marker{color:var(--accent)}
+@media (max-width:640px){.leg{grid-template-columns:1fr;gap:8px}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:22px}
+.skill h3{font-size:22px;text-transform:uppercase;letter-spacing:.03em}
+.skill p{color:var(--muted);font-size:14px;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;list-style:none;padding:0}
+.chips li{font:500 13px/1 var(--body);padding:7px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg)}
+@media (max-width:720px){.skills{grid-template-columns:1fr}}
+
+/* flight plan */
+.plan{background:var(--board);color:#E7ECF1;border-radius:8px;padding:28px;font-family:var(--body)}
+.route{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative;margin-top:6px}
+.wp{position:relative;padding:34px 16px 0 0;min-width:0}
+.wp::before{content:"";position:absolute;top:11px;left:0;right:0;border-top:2px dashed #3A4757}
+.wp:last-child::before{right:auto;width:0}
+.wp .dot{position:absolute;top:4px;left:0;width:16px;height:16px;border-radius:50%;background:var(--board);border:2px solid var(--flap-dim)}
+.wp.done .dot{background:var(--go);border-color:var(--go)}
+.wp.now .dot{background:var(--flap);border-color:var(--flap);box-shadow:0 0 0 5px rgba(232,168,23,.18)}
+.wp code{font:600 12px/1 var(--mono);letter-spacing:.12em;color:var(--flap)}
+.wp h3{font-size:22px;color:#F3F5F7;margin-top:8px;text-transform:uppercase;letter-spacing:.03em}
+.wp p{font-size:14px;color:#A9B4C0;margin-top:6px}
+.plan-note{margin-top:24px;padding-top:16px;border-top:1px solid var(--board-line);font:400 12px/1.6 var(--mono);color:var(--flap-dim);letter-spacing:.04em}
+@media (max-width:760px){
+  .route{grid-template-columns:1fr}
+  .wp{padding:0 0 22px 34px}
+  .wp::before{top:16px;bottom:0;left:7px;right:auto;border-top:0;border-left:2px dashed #3A4757}
+  .wp:last-child::before{display:none}
+  .wp .dot{top:2px}
+}
+
+/* earlier work */
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.proj{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s,transform .2s}
+.proj:hover{border-color:var(--accent);transform:translateY(-2px)}
+.proj img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-bottom:1px solid var(--line)}
+.proj div{padding:14px 16px 16px}
+.proj h3{font-size:19px;text-transform:uppercase;letter-spacing:.02em}
+.proj p{font-size:13.5px;color:var(--muted);margin-top:6px}
+.proj small{display:block;margin-top:10px;font:600 11px/1 var(--mono);letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+
+/* contact */
+.contact{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:28px}
+.contact h2{font-size:clamp(36px,5vw,56px);text-transform:uppercase}
+.contact p{color:var(--muted);margin-top:12px;max-width:34em}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.mail code{font:500 15px/1 var(--mono);padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--surface);user-select:all}
+footer{padding-block:28px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
 </head>
-
 <body>
 
-    <div class="loader">
-        <div class="inner"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="wrap">
+    <a class="mark" href="#top">E<span>F</span>J</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li class="opt"><a href="#skills">Skills</a></li>
+      <li class="opt"><a href="#earlier">Earlier work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Aviation cybersecurity</p>
+      <h1 style="margin-top:14px">Emile F. Joseph</h1>
+      <p class="roles">Cybersecurity <b>/</b> Data Governance <b>/</b> Cloud Security</p>
+      <p class="lede">I protect the data that keeps operations moving. Four years inside FedEx operations, security, and governance taught me how logistics data is created, used, and exposed. I'm bringing that experience, plus an M.S. in Aviation Cybersecurity, to cloud security and GRC in the airline industry.</p>
+      <div class="ctas">
+        <a class="btn primary" href="mailto:ejose1921@gmail.com">Email me</a>
+        <a class="btn" href="Emile_JosephSr_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a class="btn" href="https://github.com/ejosephsr" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
 
-    <div id="slides">
+    <div class="board" role="region" aria-label="Career path shown as a departures board">
+      <div class="board-head"><strong>DEPARTURES</strong><span>CAREER PATH · EFJ</span></div>
+      <table>
+        <thead><tr><th>Since</th><th>Destination</th><th class="gate">Gate</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>2018</td><td class="dest flap">Operations Analyst</td><td class="gate flap">FDX GRD</td><td><span class="st dep">Departed</span></td></tr>
+          <tr><td>2022</td><td class="dest flap">SOC Analyst</td><td class="gate flap">DAGGERS</td><td><span class="st dep">Departed</span></td></tr>
+          <tr><td>2022</td><td class="dest flap">Cybersecurity Analyst</td><td class="gate flap">FEDEX</td><td><span class="st dep">Departed</span></td></tr>
+          <tr><td>2024</td><td class="dest flap">Data Governance Eng.</td><td class="gate flap">FEDEX</td><td><span class="st on">On station</span></td></tr>
+          <tr><td>Next</td><td class="dest flap">Cloud Security Eng.</td><td class="gate flap">AIRLINE</td><td><span class="st brd">Boarding</span></td></tr>
+        </tbody>
+      </table>
+      <p class="board-foot">CLEARANCES: SEC+ · CYSA+ · M.S. AVIATION CYBERSECURITY</p>
+    </div>
+  </div>
+</header>
 
-        <div class="overlay"></div>
-
-        <div class="slides-container">
-            <img src="Images/slide1.jpg" alt="">
-            <img src="Images/slide2.jpg" alt="">
-            <img src="Images/slide3.jpg" alt="">
+<main>
+  <section id="about">
+    <div class="wrap about">
+      <img src="Images/v2/headshot.jpg" alt="Portrait of Emile F. Joseph" width="220" height="220">
+      <div class="txt">
+        <div class="sec-head" style="margin-bottom:0">
+          <p class="eyebrow">About</p>
+          <h2>Security that starts with the data</h2>
         </div>
+        <p>I'm a Data Governance Engineer at FedEx. I started on the operations floor at FedEx Ground, moved into security operations, and now help teams meet the data standards that security and compliance depend on.</p>
+        <p>That path gives me a practical view of risk. I know what an alert looks like at 2 a.m., what a data-quality gap costs a business unit, and how to explain both to people who aren't in security. I'm now focused on cloud security and governance roles at major U.S. airlines, where I can combine my aviation cybersecurity training with hands-on enterprise experience.</p>
+        <dl class="facts">
+          <div><dt>Education</dt><dd>M.S. Aviation Cybersecurity</dd></div>
+          <div><dt>Certifications</dt><dd>CompTIA Security+<br>CompTIA CySA+</dd></div>
+          <div><dt>Seeking</dt><dd>Remote cloud security, GRC &amp; cyber roles</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
 
-        <div class="titleMessage">
-            <div class="heading">
-                <p class="main">EMILE F. JOSEPH</p>
-                <p class="sub typed"></p>
-            </div>
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Experience</p>
+        <h2>Flight log</h2>
+        <p>Most recent first.</p>
+      </div>
+      <ol class="log">
+        <li class="leg">
+          <div class="when">Apr 2024 – Present<br><span class="tag">Current</span></div>
+          <div>
+            <h3>Data Governance Engineer</h3>
+            <p class="org">FedEx Corporation</p>
+            <ul>
+              <li>Worked with stakeholders to define the KPI metrics behind a governance SharePoint site that tracks each team's adherence to data standards and data quality.</li>
+              <li>Support enterprise data standards and quality controls so security, compliance, and analytics teams can trust the data they rely on.</li>
+              <li>Mentor and train new and junior analysts on governance processes, procedures, and workflows.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="leg">
+          <div class="when">Dec 2022 – Apr 2024</div>
+          <div>
+            <h3>Cybersecurity Analyst</h3>
+            <p class="org">FedEx Corporation</p>
+            <ul>
+              <li>Monitored, investigated, and documented security events across enterprise systems.</li>
+              <li>Escalated confirmed issues and worked with system owners on remediation.</li>
+              <li>Built the security foundation that now shapes how I approach data governance and cloud controls.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="leg">
+          <div class="when">Oct 2022 – Apr 2023<br><span class="tag">Remote contract</span></div>
+          <div>
+            <h3>Security Operations Center Analyst</h3>
+            <p class="org">Daggers Group of Companies</p>
+            <ul>
+              <li>Worked in a managed security service (MSSP) setting, supporting multiple client organizations.</li>
+              <li>Triaged and investigated alerts, separated true threats from noise, and escalated incidents to client teams.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="leg">
+          <div class="when">Nov 2018 – Dec 2022</div>
+          <div>
+            <h3>Operations Analyst</h3>
+            <p class="org">FedEx Ground</p>
+            <ul>
+              <li>Led a quarterly cost-reduction project through departmental budget and spend analysis, identifying unused procured material and cutting costs by 30%.</li>
+              <li>Presented operational and financial information to stakeholders in Google Sheets for review and approval.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Skills</p>
+        <h2>What I bring</h2>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <h3>Security operations</h3>
+          <p>Monitoring, triage, and investigation in enterprise and MSSP environments.</p>
+          <ul class="chips"><li>SIEM alert triage</li><li>Incident investigation</li><li>Escalation &amp; documentation</li><li>Threat analysis</li><li>Vulnerability management</li></ul>
         </div>
-
-
-        <nav class="slides-navigation">
-            <a href="#" class="next"></a>
-            <a href="#" class="prev"></a>
-        </nav>
-
-    </div>
-
-    <nav id="navigation" class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="#">Home</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#about">About<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#skills">Skills</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#Portfolio">Portfolio</a>
-                </li>
-              </ul>
-            </div>
-
-    </nav>
-
-    <div id="about" class="section">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-5">
-                    <img class="aboutImage" src="Images/about.JPG">
-                </div>
-
-                <div class="col-md-7">
-
-                    <h4>My name is Emile F. Joseph</h4>
-
-                    <p> I'm a multidisciplinary and aspiring Data Analyst / ETL Developer passionate about solving problems, 
-                        telling stories with data and uncovering insights that drive business decisions. Analytically 
-                        creative and independent with limited direction in condensing, testing, modeling and training 
-                        data into a simple understanding story. Adept at working collaboratively with teams across multiple 
-                        functions to gather information from a wide variety of sources and effectively break down concepts 
-                        to diverse audiences. Excels at learning new technology with passion.
-                        Following my passion for data science and technology, I'm excited to put my skills to good work.
-                    </p>
-
-                </div>
-
-            </div>
-
+        <div class="skill">
+          <h3>Data governance &amp; GRC</h3>
+          <p>Turning data standards into measurable, trackable practice.</p>
+          <ul class="chips"><li>Data standards &amp; quality</li><li>KPI &amp; metric design</li><li>Governance reporting</li><li>SharePoint governance sites</li><li>Policy &amp; process documentation</li><li>Analyst training</li></ul>
         </div>
-
-    </div>
-
-    <div id="skills" class="skillsSection section">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-12 text-center">
-                    <h2>TECHNICAL SKILLS</h2>
-                    <p>A representation of my proficiency in each skill</p>
-                </div>
-
-                <div class="owl-carousel owl-theme">
-                    <div class="skill">
-                        <span class="chart" data-percent="80">
-                            <span class="percent">80</span>
-                            <canvas height="152" width="152"></canvas>
-                        </span>
-                        <h4>PYTHON</h4>
-                        <p>Used in most of my projects</p>
-                    </div>
-
-                    <div class="skill">
-                        <span class="chart" data-percent="85">
-                            <span class="percent">85</span>
-                            <canvas height="152" width="152"></canvas>
-                        </span>
-                        <h4>SQL</h4>
-                        <p>Used in my projects with databases</p>
-                    </div>
-
-                    <div class="skill">
-                        <span class="chart" data-percent="70">
-                            <span class="percent">70</span>
-                            <canvas height="152" width="152"></canvas>
-                        </span>
-                        <h4>HTML</h4>
-                        <p>Used in all of my web base projects</p>
-                    </div>
-
-                    <div class="skill">
-                        <span class="chart" data-percent="50">
-                            <span class="percent">50</span>
-                            <canvas height="152" width="152"></canvas>
-                        </span>
-                        <h4>JAVASCRIPT</h4>
-                        <p>Used in most of my web base projects</p>
-                    </div>
-
-                    <div class="skill">
-                        <span class="chart" data-percent="85">
-                            <span class="percent">85</span>
-                            <canvas height="152" width="152"></canvas>
-                        </span>
-                        <h4>TABLEAU</h4>
-                        <p>Used in my dashboarding & Visualization projects</p>
-                    </div>
-
-                    <div class="skill">
-                        <span class="chart" data-percent="70">
-                            <span class="percent">70</span>
-                            <canvas height="152" width="152"></canvas>
-                        </span>
-                        <h4>SSIS</h4>
-                        <p>Used in my projects with data migration</p>
-                    </div>
-                </div>
-
-            </div>
-
+        <div class="skill">
+          <h3>Cloud security</h3>
+          <p>My current focus, built on security and governance fundamentals.</p>
+          <ul class="chips"><li>Identity &amp; access management</li><li>Shared responsibility model</li><li>Cloud logging &amp; monitoring</li><li>Data protection &amp; classification</li><li>Security baselines</li></ul>
         </div>
-
-
-
-    </div>
-
-    <div id="Portfolio" class="section">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="heading">
-                    <h2>PORTFOLIO</h2>
-                </div>
-
-                <div class="filter">
-                    <ul id="filters">
-                        <li><a href="#" data-filter="*" class="current">ALL</a></li>
-                        <li><a href="#" data-filter=".projects">Projects</a></li>
-                        <li><a href="#" data-filter=".websites">Websites</a></li>
-                        <li><a href="#" data-filter=".resume">Resume</a></li>
-
-                    </ul>
-
-                </div>
-
-                <div class="itemsContainer">
-
-                        <ul class="items">
-    
-                            <li onclick="" class="projects col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                <div class="item">
-    
-                                    <img src="Images/Portfolio/thumbnails/homeless.png">
-    
-    
-                                    <div class="icons">
-                                        <a href="Images/Portfolio/homeless.png" title="View image" class="openButton" data-fancybox data-caption="This is a dashboard of homelessness by state within the US from 2007 to 2019.">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-    
-                                        <a href="https://dashboard-homelessness-usa.herokuapp.com/" target="_blank" class="projectLink">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="imageOverlay"></div>
-    
-                                </div>
-    
-    
-                            </li>
-    
-                            <li onclick="" class="projects col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                <div class="item">
-    
-                                    <img src="Images/Portfolio/thumbnails/bellyb.png">
-    
-    
-                                    <div class="icons">
-                                        <a href="Images/Portfolio/belly.png" title="View image" class="openButton" data-fancybox data-caption="This is a biodiversity interactive dashboard of microes that colonize human navels.">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-    
-                                        <a href="https://ejosephsr.github.io/Plot.ly/" target="_blank" class="projectLink">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="imageOverlay"></div>
-    
-                                </div>
-    
-    
-                            </li>
-    
-                            <li onclick="" class="project col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                <div class="item">
-    
-                                    <img src="Images/Portfolio/thumbnails/weather.png">
-    
-    
-                                    <div class="icons">
-                                        <a href="Images/Portfolio/weather1.png" title="View image" class="openButton" data-fancybox data-caption="This is a project depicting similiar weather conditions around the world.">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-    
-                                        <a href="https://barrytik.github.io/Weather-Clustering/" target="_blank" class="projectLink">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="imageOverlay"></div>
-    
-                                </div>
-    
-    
-                            </li>
-    
-                            <li onclick="" class="websites col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                <div class="item">
-    
-                                    <img src="Images/Portfolio/thumbnails/crime heat1.png">
-    
-    
-                                    <div class="icons">
-                                        <a href="Images/Portfolio/crime heat map.png" title="View image" class="openButton" data-fancybox data-caption="This is a heat map of San Francisco depicting crime areas">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-    
-                                        <a href="https://ejosephsr.github.io/Police-Crime-heatmap/" target="_blank" class="projectLink">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="imageOverlay"></div>
-    
-                                </div>
-    
-    
-                            </li>
-    
-                            <li onclick="" class="projects col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                <div class="item">
-    
-                                    <img src="Images/Portfolio/thumbnails/citibike1.png">
-    
-    
-                                    <div class="icons">
-                                        <a href="Images/Portfolio/citibike.png" title="View image" class="openButton" data-fancybox data-caption="Interactive map of New York geographical Citi Bikes stations & availability.">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-    
-                                        <a href="https://ejosephsr.github.io/City-bikes-in-New-York/." target="_blank" class="projectLink">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="imageOverlay">
-
-                                    </div>
-    
-                                </div>
-    
-    
-                            </li>
-    
-    
-                            <li onclick="" class="project col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                <div class="item">
-    
-                                    <img src="Images/Portfolio/thumbnails/database.png">
-    
-    
-                                    <div class="icons">
-                                        <a href="Images/Portfolio/database.png" title="View image" class="openButton" data-fancybox data-caption="This is an ETL project manipulating data.">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-    
-                                        <a href="https://github.com/ejosephSr/ETL-Project/blob/master/Because_we_are_happy.ipynb" target="_blank" class="projectLink">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="imageOverlay"></div>
-    
-                                </div>
-    
-    
-                            </li>
-
-                            <li onclick="" class="projects col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                    <div class="item">
-        
-                                        <img src="Images/Portfolio/thumbnails/Latitude 2.png">
-        
-        
-                                        <div class="icons">
-                                            <a href="Images/Portfolio/Latitude.png" title="View image" class="openButton" data-fancybox data-caption="this project analyzes how weather changes as you get closer to the equator..">
-                                                <i class="fa fa-search"></i>
-                                            </a>
-        
-                                            <a href="https://ejosephsr.github.io/Web-Design-Challenge/" target="_blank" class="projectLink">
-                                                <i class="fa fa-link"></i>
-                                            </a>
-                                        </div>
-    
-                                        <div class="imageOverlay">
-    
-                                        </div>
-        
-                                    </div>
-        
-        
-                                </li>
-    
-                            <li onclick="" class="resume col-xs-6 col-sm-4 col-md-3 col-lg-3">
-    
-    
-                                <div class="item">
-    
-                                    <img src="Images/Portfolio/thumbnails/resume.jpg">
-    
-    
-                                    <div class="icons">
-                                        <a href="Images/Portfolio/resume1.jpg" title="View image" class="openButton" data-fancybox data-caption="This is EJ jr.">
-                                            <i class="fa fa-search"></i>
-                                        </a>
-    
-                                        <a href="https://drive.google.com/file/d/1--RGbrgC6WJV8wx1iacIccqsWkZWER3S/view?usp=sharing" target="_blank" class="projectLink">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="imageOverlay"></div>
-    
-                                </div>
-    
-    
-                            </li>
-                            
-                        </ul>
-    
-                    </div>
-    </div>
-
-    <div id="contact" class="contactSection section">
-
-        <div class="col-md-12 text-center">
-            <p class="subHeading">Love what you see?</p>
-            <h2>I'd love to hear from you!</h2>
-            <a href="mailTO:ejose1921@gmail.com" class="contactButton">Get In Touch!</a>
-
-
+        <div class="skill">
+          <h3>Data &amp; analysis</h3>
+          <p>The analytics background behind my governance work.</p>
+          <ul class="chips"><li>SQL</li><li>Python</li><li>Tableau</li><li>SSIS / ETL</li><li>Google Sheets</li><li>Stakeholder reporting</li></ul>
         </div>
-
-
-
+      </div>
     </div>
+  </section>
 
-    <div class="copyrightSection">
-
-            <div class="col-md-12 text-center">
-                <p>&copy; Copyright Emile F. Joseph 2020</p>
-            </div>
-    
+  <section id="route">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Flight plan</p>
+        <h2>Route to cloud security</h2>
+        <p>Each leg builds on the last: see the threats, govern the data, then secure the platforms that hold it.</p>
+      </div>
+      <div class="plan">
+        <div class="route">
+          <div class="wp done"><span class="dot"></span><code>WPT 1 · OPS</code><h3>Operations</h3><p>Learned how logistics data is created and used, and where money and time leak.</p></div>
+          <div class="wp done"><span class="dot"></span><code>WPT 2 · SOC</code><h3>Detection</h3><p>SOC and cybersecurity analyst work. Security+ and CySA+ certified.</p></div>
+          <div class="wp now"><span class="dot"></span><code>WPT 3 · GOV</code><h3>Governance</h3><p>Data standards, quality KPIs, and the reporting that holds teams to them.</p></div>
+          <div class="wp"><span class="dot"></span><code>DEST · CLD</code><h3>Cloud security</h3><p>Securing airline cloud environments: identity, logging, and data protection.</p></div>
         </div>
-    
-
+        <p class="plan-note">EDUCATION ON BOARD: M.S. AVIATION CYBERSECURITY · TARGET: REMOTE ROLES AT MAJOR U.S. AIRLINES</p>
+      </div>
     </div>
+  </section>
 
+  <section id="earlier">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Earlier work</p>
+        <h2>Data projects</h2>
+        <p>Analytics and ETL projects from before my move into security. They show the data skills I still use every day in governance.</p>
+      </div>
+      <div class="projects">
+        <a class="proj" href="https://dashboard-homelessness-usa.herokuapp.com/" target="_blank" rel="noopener"><img src="Images/v2/homeless.jpg" alt="Homelessness dashboard screenshot"><div><h3>U.S. homelessness</h3><p>Dashboard of homelessness by state, 2007–2019.</p><small>Dashboard</small></div></a>
+        <a class="proj" href="https://github.com/ejosephSr/ETL-Project/blob/master/Because_we_are_happy.ipynb" target="_blank" rel="noopener"><img src="Images/v2/etl.jpg" alt="ETL project database diagram"><div><h3>ETL pipeline</h3><p>Extracting, cleaning, and loading data into a relational database.</p><small>Python · SQL</small></div></a>
+        <a class="proj" href="https://ejosephsr.github.io/Police-Crime-heatmap/" target="_blank" rel="noopener"><img src="Images/v2/crime.jpg" alt="San Francisco crime heat map"><div><h3>SF crime heat map</h3><p>Heat map of reported crime areas in San Francisco.</p><small>Leaflet · JavaScript</small></div></a>
+        <a class="proj" href="https://ejosephsr.github.io/City-bikes-in-New-York/" target="_blank" rel="noopener"><img src="Images/v2/citibike.jpg" alt="Citi Bike station map"><div><h3>Citi Bike NYC</h3><p>Interactive map of station locations and bike availability.</p><small>Mapping · API</small></div></a>
+        <a class="proj" href="https://ejosephsr.github.io/Plot.ly/" target="_blank" rel="noopener"><img src="Images/v2/belly.jpg" alt="Belly button biodiversity dashboard"><div><h3>Biodiversity dashboard</h3><p>Interactive charts of microbes found in human navels.</p><small>Plotly</small></div></a>
+        <a class="proj" href="https://barrytik.github.io/Weather-Clustering/" target="_blank" rel="noopener"><img src="Images/v2/weather.jpg" alt="Weather clustering map"><div><h3>Weather clustering</h3><p>Groups cities around the world with similar weather.</p><small>Machine learning</small></div></a>
+        <a class="proj" href="https://ejosephsr.github.io/Web-Design-Challenge/" target="_blank" rel="noopener"><img src="Images/v2/latitude.jpg" alt="Latitude and weather analysis"><div><h3>Latitude &amp; weather</h3><p>How weather changes as you approach the equator.</p><small>Python · HTML</small></div></a>
+      </div>
+    </div>
+  </section>
 
-    <script src="jquery.superslides.min.js"></script>
-    <script src="jquery.easypiechart.min.js"></script>
-    <script src="owl.carousel.min.js"></script>
-    <script src="typed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 style="margin-top:10px">Let's talk</h2>
+        <p>Hiring for cloud security, GRC, or cybersecurity? I'd like to hear about the role.</p>
+      </div>
+      <div class="mail">
+        <code id="email">ejose1921@gmail.com</code>
+        <button class="btn primary" id="copy" type="button">Copy email</button>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <script src="script.js"></script>
+<footer>
+  <div class="wrap"><span>© 2026 Emile F. Joseph</span><a href="#top">Back to top ↑</a></div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('copy'),addr=document.getElementById('email').textContent;
+  btn.addEventListener('click',function(){
+    function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected, press Ctrl+C';}
+    try{navigator.clipboard.writeText(addr).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},2000)},sel)}catch(e){sel()}
+  });
+  // Split-flap settle on load; real text is already in the HTML.
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  document.querySelectorAll('.board .flap').forEach(function(el,i){
+    var final=el.textContent,t=0,steps=10+i%5;
+    var id=setInterval(function(){
+      t++;
+      el.textContent=final.split('').map(function(c,k){
+        if(c===' '||c==='.'||k<final.length*t/steps)return c;
+        return chars[(Math.random()*chars.length)|0];
+      }).join('');
+      if(t>=steps){clearInterval(id);el.textContent=final;}
+    },45);
+  });
+})();
+</script>
 
 </body>
-
 </html>
