@@ -138,6 +138,27 @@ section{padding-block:64px;border-top:1px solid var(--line)}
   .wp .dot{top:2px}
 }
 
+/* cloud projects */
+.feature{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:28px}
+.feature>div{min-width:0}
+.feature h3{font-size:30px;text-transform:uppercase;letter-spacing:.02em}
+.feature .sum{margin-top:10px;color:var(--muted);max-width:36em}
+.feature ul.pts{margin:16px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:8px}
+.feature ul.pts li::marker{color:var(--accent)}
+.feature .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.pipe{align-self:start;background:var(--board);border-radius:6px;padding:20px;font-family:var(--mono);color:#E7ECF1;display:flex;flex-direction:column;gap:14px}
+.pipe-head{display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:.14em;color:var(--flap-dim);padding-bottom:10px;border-bottom:1px solid var(--board-line)}
+.lane{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:stretch}
+.stage{border:1px solid var(--board-line);border-radius:4px;padding:10px;font-size:11.5px;line-height:1.4;position:relative;min-width:0;overflow-wrap:break-word}
+.stage b{display:block;font-size:10px;letter-spacing:.14em;color:var(--flap);font-weight:600;margin-bottom:4px}
+.stage+.stage::before{content:"\25B6";position:absolute;left:-9px;top:50%;transform:translateY(-50%);font-size:8px;color:var(--flap-dim)}
+.lane-tag{font-size:10.5px;letter-spacing:.12em;color:var(--flap-dim);text-transform:uppercase}
+.lane-tag.prod{color:var(--go)}
+.pipe code.cmd{display:block;font-size:11.5px;color:var(--flap);background:rgba(255,255,255,.04);border-radius:4px;padding:10px;overflow-x:auto;white-space:nowrap}
+.feature ul.pts code{white-space:nowrap}
+@media (max-width:860px){.feature{grid-template-columns:1fr;padding:20px}}
+@media (max-width:520px){.lane{grid-template-columns:1fr;gap:10px}.stage+.stage::before{content:"\25BC";left:50%;top:-9px;transform:translateX(-50%)}}
+
 /* earlier work */
 .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
 .proj{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s,transform .2s}
@@ -170,6 +191,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li class="opt"><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li class="opt"><a href="#earlier">Earlier work</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -332,6 +354,49 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </div>
         <p class="plan-note">EDUCATION ON BOARD: M.S. AVIATION CYBERSECURITY · TARGET: REMOTE ROLES AT MAJOR U.S. AIRLINES</p>
       </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Cloud projects</p>
+        <h2>Cloud &amp; DevOps work</h2>
+        <p>Hands-on projects on my route to cloud security engineering.</p>
+      </div>
+      <article class="feature">
+        <div>
+          <p class="eyebrow">AWS · GitHub Actions · CI/CD</p>
+          <h3 style="margin-top:10px">Static website deployment pipeline</h3>
+          <p class="sum">A CI/CD pipeline that publishes a static website to Amazon S3 automatically. Changes go live through Git, with no manual uploads to the AWS console.</p>
+          <ul class="pts">
+            <li>Wrote GitHub Actions workflows that run on pull requests (beta) and on merges to <code>main</code> (production).</li>
+            <li>Configured AWS CLI credentials in the pipeline from encrypted GitHub repository secrets, keeping access keys out of the code.</li>
+            <li>Excluded repository internals (<code>.git</code>, workflow files, README) from the sync so only website files reach the public bucket.</li>
+          </ul>
+          <ul class="chips"><li>AWS S3</li><li>AWS CLI</li><li>GitHub Actions</li><li>YAML</li><li>CI/CD</li><li>Secrets management</li></ul>
+          <div class="links">
+            <a class="btn primary" href="https://luit-blue-website.s3.us-east-2.amazonaws.com/website.html" target="_blank" rel="noopener">View live site</a>
+            <a class="btn" href="https://github.com/ejosephSr/CI-CD-static-website-automation" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+        <div class="pipe" role="img" aria-label="Pipeline: pull requests run the beta workflow; merges to main run the production workflow, which syncs the site to an S3 bucket in us-east-2.">
+          <div class="pipe-head"><span>PIPELINE</span><span>US-EAST-2</span></div>
+          <span class="lane-tag">On pull request · beta</span>
+          <div class="lane">
+            <div class="stage"><b>GITHUB</b>Pull request opened</div>
+            <div class="stage"><b>ACTIONS</b>Deploy to Beta</div>
+            <div class="stage"><b>REVIEW</b>Check before merge</div>
+          </div>
+          <span class="lane-tag prod">On merge to main · production</span>
+          <div class="lane">
+            <div class="stage"><b>GITHUB</b>Push to main</div>
+            <div class="stage"><b>ACTIONS</b>Configure AWS credentials</div>
+            <div class="stage"><b>AMAZON S3</b>Sync site to bucket</div>
+          </div>
+          <code class="cmd">$ aws s3 sync . s3://luit-blue-website/ --exclude ".git/*" --exclude ".github/*"</code>
+        </div>
+      </article>
     </div>
   </section>
 

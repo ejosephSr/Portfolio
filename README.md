@@ -22,8 +22,27 @@ This repository holds the source for my personal portfolio site, hosted on GitHu
 | **Experience** | Roles at FedEx Corporation, Daggers Group of Companies, and FedEx Ground |
 | **Skills** | Security operations, data governance & GRC, cloud security, and data & analysis |
 | **Route to cloud security** | How operations, detection, and governance work lead into cloud security |
+| **Cloud projects** | Hands-on cloud and DevOps work, starting with an AWS CI/CD deployment pipeline |
 | **Earlier work** | Data analytics and ETL projects from before my move into security |
 | **Contact** | Email and résumé |
+
+## Cloud projects
+
+### Static website deployment pipeline
+**AWS S3 · AWS CLI · GitHub Actions · CI/CD**
+[Live site](https://luit-blue-website.s3.us-east-2.amazonaws.com/website.html) · [View the repository](https://github.com/ejosephSr/CI-CD-static-website-automation)
+
+A CI/CD pipeline that publishes a static website to Amazon S3 automatically, so changes go live through Git with no manual uploads to the AWS console.
+
+- **Pull requests** run a beta workflow for checking changes before merge.
+- **Merges to `main`** run the production workflow, which configures AWS credentials and syncs the site to an S3 bucket in `us-east-2`.
+- **AWS access keys** are stored as encrypted GitHub repository secrets, never in the code.
+- **Sync exclusions** keep repository internals (`.git`, workflow files, README) out of the public bucket, so only website files are published.
+
+```
+Pull request ──▶ GitHub Actions ──▶ Deploy to Beta
+Push to main ──▶ GitHub Actions ──▶ Configure AWS credentials ──▶ aws s3 sync ──▶ Amazon S3
+```
 
 ## Earlier data projects
 
